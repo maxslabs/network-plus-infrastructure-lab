@@ -1,0 +1,11 @@
+=== WORKSTATION ROUTING TABLE ===
+default via 10.10.10.1 dev veth-ws 
+10.10.10.0/24 dev veth-ws proto kernel scope link src 10.10.10.10 
+
+=== ROUTER ROUTING TABLE ===
+10.10.10.0/24 dev veth-r1 proto kernel scope link src 10.10.10.1 
+10.10.20.0/24 dev veth-r3 proto kernel scope link src 10.10.20.1 
+
+=== SERVER01 ROUTING TABLE ===
+default via 10.10.20.1 dev veth-srv 
+10.10.20.0/24 dev veth-srv proto kernel scope link src 10.10.20.10 

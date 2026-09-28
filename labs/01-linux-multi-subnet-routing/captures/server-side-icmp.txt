@@ -1,0 +1,4 @@
+21:50:22.600397 9a:bd:b9:6a:21:69 > 66:20:96:a1:00:bb, ethertype IPv4 (0x0800), length 98: 10.10.10.10 > 10.10.20.10: ICMP echo request, id 6577, seq 1, length 64
+21:50:22.600411 66:20:96:a1:00:bb > 9a:bd:b9:6a:21:69, ethertype IPv4 (0x0800), length 98: 10.10.20.10 > 10.10.10.10: ICMP echo reply, id 6577, seq 1, length 64
+21:50:23.617217 9a:bd:b9:6a:21:69 > 66:20:96:a1:00:bb, ethertype IPv4 (0x0800), length 98: 10.10.10.10 > 10.10.20.10: ICMP echo request, id 6577, seq 2, length 64
+21:50:23.617246 66:20:96:a1:00:bb > 9a:bd:b9:6a:21:69, ethertype IPv4 (0x0800), length 98: 10.10.20.10 > 10.10.10.10: ICMP echo reply, id 6577, seq 2, length 64

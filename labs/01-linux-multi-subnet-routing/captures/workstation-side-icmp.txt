@@ -1,0 +1,4 @@
+21:49:32.983457 ca:21:c2:70:c7:19 > 76:d2:c8:f1:8c:cd, ethertype IPv4 (0x0800), length 98: 10.10.10.10 > 10.10.20.10: ICMP echo request, id 6558, seq 1, length 64
+21:49:32.983529 76:d2:c8:f1:8c:cd > ca:21:c2:70:c7:19, ethertype IPv4 (0x0800), length 98: 10.10.20.10 > 10.10.10.10: ICMP echo reply, id 6558, seq 1, length 64
+21:49:33.985271 ca:21:c2:70:c7:19 > 76:d2:c8:f1:8c:cd, ethertype IPv4 (0x0800), length 98: 10.10.10.10 > 10.10.20.10: ICMP echo request, id 6558, seq 2, length 64
+21:49:33.985339 76:d2:c8:f1:8c:cd > ca:21:c2:70:c7:19, ethertype IPv4 (0x0800), length 98: 10.10.20.10 > 10.10.10.10: ICMP echo reply, id 6558, seq 2, length 64

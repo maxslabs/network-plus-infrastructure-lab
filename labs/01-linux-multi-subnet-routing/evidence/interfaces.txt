@@ -1,0 +1,12 @@
+=== WORKSTATION INTERFACES ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+veth-ws@if12     UP             10.10.10.10/24 fe80::c821:c2ff:fe70:c719/64 
+
+=== ROUTER INTERFACES ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+veth-r1@if13     UP             10.10.10.1/24 fe80::74d2:c8ff:fef1:8ccd/64 
+veth-r3@if14     UP             10.10.20.1/24 fe80::98bd:b9ff:fe6a:2169/64 
+
+=== SERVER01 INTERFACES ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+veth-srv@if15    UP             10.10.20.10/24 fe80::6420:96ff:fea1:bb/64 

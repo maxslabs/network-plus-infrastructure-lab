@@ -1,0 +1,43 @@
+digraph NetworkTopology {
+    graph [
+        rankdir=LR,
+        labelloc="t",
+        label="Linux Multi-Subnet Routing Lab",
+        fontsize=20,
+        nodesep=0.8,
+        ranksep=1.0
+    ];
+
+    node [
+        shape=box,
+        style="rounded",
+        fontsize=12,
+        margin="0.20,0.15"
+    ];
+
+    edge [
+        fontsize=10
+    ];
+
+    workstation [
+        label="Workstation\n10.10.10.10/24\nveth-ws"
+    ];
+
+    router [
+        label="Linux Router\n\nveth-r1: 10.10.10.1/24\nveth-r3: 10.10.20.1/24\n\nIPv4 Forwarding Enabled"
+    ];
+
+    server01 [
+        label="Server01\n10.10.20.10/24\nveth-srv"
+    ];
+
+    workstation -> router [
+        dir=none,
+        label="10.10.10.0/24"
+    ];
+
+    router -> server01 [
+        dir=none,
+        label="10.10.20.0/24"
+    ];
+}
