@@ -1,0 +1,93 @@
+# Network+ Infrastructure Lab
+
+A progressive networking homelab built to develop practical infrastructure, packet-analysis, and troubleshooting skills alongside CompTIA Network+ objectives.
+
+Rather than documenting networking theory alone, each lab implements concepts in a working environment, captures and analyses network traffic, introduces or investigates failure conditions, and documents the troubleshooting process used to identify and resolve them.
+
+## Lab Environment
+
+The project primarily uses Linux-based virtual networking to create reproducible network topologies without requiring dedicated networking hardware.
+
+Technologies and tools used throughout the project include:
+
+- Linux network namespaces
+- Virtual Ethernet (`veth`) interfaces
+- IPv4 and IPv6
+- Linux routing
+- Bash
+- `iproute2`
+- `tcpdump`
+- Wireshark
+- Graphviz
+- Network diagnostic utilities
+
+Additional systems and networking technologies will be introduced as the lab develops.
+
+## Labs
+
+| Lab | Topic | Status |
+|---|---|---|
+| [01 - Linux Multi-Subnet Routing](labs/01-linux-multi-subnet-routing/) | Subnetting, routing, default gateways, IPv4 forwarding, ARP and ICMP packet analysis | Complete |
+| 02 - Routing Loops and TTL | Routing loops, hop limits and TTL expiration | Planned |
+| 03 - VLAN Segmentation | VLANs and Layer 2 network segmentation | Planned |
+| 04 - Inter-VLAN Routing | Routing between segmented VLAN networks | Planned |
+| 05 - DHCP Network Services | Dynamic IPv4 configuration and DHCP behaviour | Planned |
+| 06 - NAT and PAT | Address translation and port address translation | Planned |
+| 07 - Firewall and ACL Segmentation | Traffic filtering and network access control | Planned |
+| 08 - IPv6 Networking | IPv6 addressing, neighbour discovery and routing | Planned |
+
+## Current Topology
+
+The first lab implements two IPv4 subnets connected through a Linux router:
+
+```text
+10.10.10.0/24                              10.10.20.0/24
+
++-------------+       +-------------+       +-------------+
+| Workstation |       |    Router   |       |   Server01  |
+|             |       |             |       |             |
+| 10.10.10.10 |-------| 10.10.10.1 |       | 10.10.20.10 |
+|             |       | 10.10.20.1 |-------|             |
++-------------+       +-------------+       +-------------+
+```
+
+The topology is deployed using Linux network namespaces and virtual Ethernet pairs and can be created or removed using the included Bash scripts.
+
+## Approach
+
+Each lab is designed around four stages:
+
+1. **Build** — Configure the network or service being studied.
+2. **Verify** — Confirm expected behaviour using appropriate diagnostic tools.
+3. **Analyse** — Inspect routing information, protocol behaviour and packet captures.
+4. **Troubleshoot** — Diagnose configuration errors and network failures rather than only documenting successful configurations.
+
+Where appropriate, lab evidence is retained in the repository, including routing tables, interface configuration, connectivity tests, packet captures and topology diagrams.
+
+## Troubleshooting
+
+Failures encountered during the labs are documented separately in the [troubleshooting log](troubleshooting/).
+
+This provides a record of symptoms, investigation steps, root causes and resolutions instead of presenting only the final working configuration.
+
+## Repository Structure
+
+```text
+network-plus-infrastructure-lab/
+├── labs/
+│   └── 01-linux-multi-subnet-routing/
+│       ├── captures/
+│       ├── diagrams/
+│       ├── evidence/
+│       ├── scripts/
+│       └── README.md
+├── troubleshooting/
+│   └── README.md
+└── README.md
+```
+
+## Purpose
+
+This repository documents my practical networking development while preparing for CompTIA Network+ and building a broader foundation for IT infrastructure and cybersecurity.
+
+The focus is on understanding how networks behave in practice: building them, observing traffic, diagnosing failures and explaining why a solution works.
