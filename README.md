@@ -75,7 +75,13 @@ This provides a record of symptoms, investigation steps, root causes and resolut
 ```text
 network-plus-infrastructure-lab/
 ├── labs/
-│   └── 01-linux-multi-subnet-routing/
+│   ├── 01-linux-multi-subnet-routing/
+│   │   ├── captures/
+│   │   ├── diagrams/
+│   │   ├── evidence/
+│   │   ├── scripts/
+│   │   └── README.md
+│   └── 02-routing-loops-and-ttl/
 │       ├── captures/
 │       ├── diagrams/
 │       ├── evidence/
