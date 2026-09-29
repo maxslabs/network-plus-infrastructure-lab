@@ -36,7 +36,9 @@ Additional systems and networking technologies will be introduced as the lab dev
 | 07 - Firewall and ACL Segmentation | Traffic filtering and network access control | Planned |
 | 08 - IPv6 Networking | IPv6 addressing, neighbour discovery and routing | Planned |
 
-## Current Topology
+## Current Labs
+
+### Lab 01 — Linux Multi-Subnet Routing
 
 The first lab implements two IPv4 subnets connected through a Linux router:
 
@@ -51,7 +53,33 @@ The first lab implements two IPv4 subnets connected through a Linux router:
 +-------------+       +-------------+       +-------------+
 ```
 
-The topology is deployed using Linux network namespaces and virtual Ethernet pairs and can be created or removed using the included Bash scripts.
+This lab demonstrates subnetting, directly connected routes, default gateways, IPv4 forwarding, ARP resolution and ICMP packet flow.
+
+### Lab 02 — Routing Loops and TTL
+
+The second lab expands the environment into a three-router topology containing a deliberately configured routing loop:
+
+```text
+                    Workstation
+                   10.10.10.10
+                        |
+                     Router A
+                    /        \
+                   /          \
+             Router B ------ Router C
+```
+
+Traffic destined for `172.16.50.0/24` is deliberately routed in a loop:
+
+```text
+Router A -> Router B -> Router C -> Router A -> ...
+```
+
+Packet captures demonstrate IPv4 TTL decreasing as the packet is forwarded around the loop until it expires. The router where TTL reaches zero generates an ICMP Time Exceeded response, preventing the packet from circulating indefinitely.
+
+The lab also documents troubleshooting involving an incorrect CIDR prefix and Linux reverse-path filtering (`rp_filter`).
+
+Both labs are reproducible using the Bash setup and cleanup scripts included in their respective directories.
 
 ## Approach
 
