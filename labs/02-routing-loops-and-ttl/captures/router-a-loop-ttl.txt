@@ -1,0 +1,9 @@
+tcpdump: listening on veth-ra2, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+23:11:00.582073 IP (tos 0x0, ttl 4, id 10674, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.10.10.10 > 172.16.50.10: ICMP echo request, id 14002, seq 1, length 64
+23:11:00.582086 IP (tos 0x0, ttl 1, id 10674, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.10.10.10 > 172.16.50.10: ICMP echo request, id 14002, seq 1, length 64
+23:11:00.582096 IP (tos 0xc0, ttl 64, id 63038, offset 0, flags [none], proto ICMP (1), length 112)
+    10.10.20.2 > 10.10.10.10: ICMP time exceeded in-transit, length 92
+	IP (tos 0x0, ttl 1, id 10674, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.10.10.10 > 172.16.50.10: ICMP echo request, id 14002, seq 1, length 64

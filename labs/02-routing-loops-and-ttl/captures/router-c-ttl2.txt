@@ -1,0 +1,3 @@
+tcpdump: listening on veth-rc2, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+23:17:12.767761 IP (tos 0x0, ttl 2, id 60950, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.10.10.10 > 172.16.50.10: ICMP echo request, id 14117, seq 1, length 64

@@ -1,0 +1,16 @@
+digraph RoutingLoop {
+    rankdir=TB;
+    graph [fontname="Arial"];
+    node [shape=box, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    WS [label="Workstation\n10.10.10.10/24"];
+    RA [label="Router A\n10.10.10.1/24\n10.10.20.1/24\n10.10.40.2/24"];
+    RB [label="Router B\n10.10.20.2/24\n10.10.30.1/24"];
+    RC [label="Router C\n10.10.30.2/24\n10.10.40.1/24"];
+
+    WS -> RA [label="10.10.10.0/24", dir=both];
+    RA -> RB [label="10.10.20.0/24\nLoop: A -> B", dir=both];
+    RB -> RC [label="10.10.30.0/24\nLoop: B -> C", dir=both];
+    RC -> RA [label="10.10.40.0/24\nLoop: C -> A", dir=both];
+}
