@@ -28,7 +28,7 @@ Additional systems and networking technologies will be introduced as the lab dev
 | Lab | Topic | Status |
 |---|---|---|
 | [01 - Linux Multi-Subnet Routing](labs/01-linux-multi-subnet-routing/) | Subnetting, routing, default gateways, IPv4 forwarding, ARP and ICMP packet analysis | Complete |
-| 02 - Routing Loops and TTL | Routing loops, hop limits and TTL expiration | Planned |
+| [02 - Routing Loops and TTL](labs/02-routing-loops-and-ttl/) | Static routing loops, IPv4 TTL, ICMP Time Exceeded, reverse-path filtering and packet analysis | Complete |
 | 03 - VLAN Segmentation | VLANs and Layer 2 network segmentation | Planned |
 | 04 - Inter-VLAN Routing | Routing between segmented VLAN networks | Planned |
 | 05 - DHCP Network Services | Dynamic IPv4 configuration and DHCP behaviour | Planned |
