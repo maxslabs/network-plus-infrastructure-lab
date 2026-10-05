@@ -29,7 +29,7 @@ Additional systems and networking technologies will be introduced as the lab dev
 |---|---|---|
 | [01 - Linux Multi-Subnet Routing](labs/01-linux-multi-subnet-routing/) | Subnetting, routing, default gateways, IPv4 forwarding, ARP and ICMP packet analysis | Complete |
 | [02 - Routing Loops and TTL](labs/02-routing-loops-and-ttl/) | Static routing loops, IPv4 TTL, ICMP Time Exceeded, reverse-path filtering and packet analysis | Complete |
-| 03 - VLAN Segmentation | VLANs and Layer 2 network segmentation | Planned |
+| [03 - VLAN Segmentation](labs/03-vlan-segmentation/) | VLANs and Layer 2 network segmentation | Complete |
 | 04 - Inter-VLAN Routing | Routing between segmented VLAN networks | Planned |
 | 05 - DHCP Network Services | Dynamic IPv4 configuration and DHCP behaviour | Planned |
 | 06 - NAT and PAT | Address translation and port address translation | Planned |
@@ -79,7 +79,15 @@ Packet captures demonstrate IPv4 TTL decreasing as the packet is forwarded aroun
 
 The lab also documents troubleshooting involving an incorrect CIDR prefix and Linux reverse-path filtering (`rp_filter`).
 
-Both labs are reproducible using the Bash setup and cleanup scripts included in their respective directories.
+The first two labs are reproducible using the Bash setup and cleanup scripts included in their respective directories.
+
+### Lab 03 — VLAN Segmentation
+
+The third lab connects four network namespaces to a VLAN-aware Linux bridge, with two hosts in VLAN 10 and two in VLAN 20.
+
+The lab verifies same-VLAN connectivity, isolation between VLANs without Layer 3 routing, ARP broadcast boundaries and per-VLAN MAC address learning in the bridge forwarding database.
+
+Next is **Lab 04 — Inter-VLAN Routing**, which will introduce routing between the segmented VLAN networks.
 
 ## Approach
 
@@ -109,7 +117,13 @@ network-plus-infrastructure-lab/
 │   │   ├── evidence/
 │   │   ├── scripts/
 │   │   └── README.md
-│   └── 02-routing-loops-and-ttl/
+│   ├── 02-routing-loops-and-ttl/
+│   │   ├── captures/
+│   │   ├── diagrams/
+│   │   ├── evidence/
+│   │   ├── scripts/
+│   │   └── README.md
+│   └── 03-vlan-segmentation/
 │       ├── captures/
 │       ├── diagrams/
 │       ├── evidence/
