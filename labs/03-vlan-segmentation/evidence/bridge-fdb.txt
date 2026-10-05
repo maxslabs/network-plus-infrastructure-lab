@@ -1,0 +1,34 @@
+33:33:00:00:00:01 dev br0 self permanent
+01:00:5e:00:00:6a dev br0 self permanent
+33:33:00:00:00:6a dev br0 self permanent
+01:00:5e:00:00:01 dev br0 self permanent
+33:33:ff:3b:99:44 dev br0 self permanent
+33:33:00:00:00:fb dev br0 self permanent
+d2:a8:0a:3b:99:44 dev br0 vlan 1 master br0 permanent
+d2:a8:0a:3b:99:44 dev br0 master br0 permanent
+82:1f:2b:04:8e:aa dev veth-a-br vlan 10 master br0 
+5e:fd:fc:35:f8:fd dev veth-a-br vlan 10 master br0 permanent
+5e:fd:fc:35:f8:fd dev veth-a-br master br0 permanent
+33:33:00:00:00:01 dev veth-a-br self permanent
+01:00:5e:00:00:01 dev veth-a-br self permanent
+33:33:ff:35:f8:fd dev veth-a-br self permanent
+33:33:00:00:00:fb dev veth-a-br self permanent
+6e:31:4a:71:4d:87 dev veth-b-br vlan 10 master br0 
+02:a9:45:56:5a:a7 dev veth-b-br vlan 10 master br0 permanent
+02:a9:45:56:5a:a7 dev veth-b-br master br0 permanent
+33:33:00:00:00:01 dev veth-b-br self permanent
+01:00:5e:00:00:01 dev veth-b-br self permanent
+33:33:ff:56:5a:a7 dev veth-b-br self permanent
+33:33:00:00:00:fb dev veth-b-br self permanent
+36:df:fc:7c:6f:15 dev veth-c-br vlan 20 master br0 permanent
+36:df:fc:7c:6f:15 dev veth-c-br master br0 permanent
+33:33:00:00:00:01 dev veth-c-br self permanent
+01:00:5e:00:00:01 dev veth-c-br self permanent
+33:33:ff:7c:6f:15 dev veth-c-br self permanent
+33:33:00:00:00:fb dev veth-c-br self permanent
+6a:55:46:27:21:62 dev veth-d-br vlan 20 master br0 permanent
+6a:55:46:27:21:62 dev veth-d-br master br0 permanent
+33:33:00:00:00:01 dev veth-d-br self permanent
+01:00:5e:00:00:01 dev veth-d-br self permanent
+33:33:ff:27:21:62 dev veth-d-br self permanent
+33:33:00:00:00:fb dev veth-d-br self permanent

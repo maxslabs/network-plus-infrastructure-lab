@@ -1,0 +1,1 @@
+10.10.10.0/24 dev veth-a proto kernel scope link src 10.10.10.10 

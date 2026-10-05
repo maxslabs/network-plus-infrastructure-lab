@@ -1,0 +1,13 @@
+digraph VLANLab {
+    rankdir=LR;
+
+    "PC-A\n10.10.10.10/24" -> "br0\nLinux Bridge";
+    "PC-B\n10.10.10.20/24" -> "br0\nLinux Bridge";
+    "PC-C\n10.10.20.10/24" -> "br0\nLinux Bridge";
+    "PC-D\n10.10.20.20/24" -> "br0\nLinux Bridge";
+
+    "PC-A\n10.10.10.10/24" [label="PC-A\nVLAN 10\n10.10.10.10/24"];
+    "PC-B\n10.10.10.20/24" [label="PC-B\nVLAN 10\n10.10.10.20/24"];
+    "PC-C\n10.10.20.10/24" [label="PC-C\nVLAN 20\n10.10.20.10/24"];
+    "PC-D\n10.10.20.20/24" [label="PC-D\nVLAN 20\n10.10.20.20/24"];
+}

@@ -1,0 +1,4 @@
+21:12:24.694123 82:1f:2b:04:8e:aa > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Request who-has 10.10.10.20 tell 10.10.10.10, length 28
+21:12:24.694145 6e:31:4a:71:4d:87 > 82:1f:2b:04:8e:aa, ethertype ARP (0x0806), length 42: Reply 10.10.10.20 is-at 6e:31:4a:71:4d:87, length 28
+21:12:29.766895 6e:31:4a:71:4d:87 > 82:1f:2b:04:8e:aa, ethertype ARP (0x0806), length 42: Request who-has 10.10.10.10 tell 10.10.10.20, length 28
+21:12:29.766971 82:1f:2b:04:8e:aa > 6e:31:4a:71:4d:87, ethertype ARP (0x0806), length 42: Reply 10.10.10.10 is-at 82:1f:2b:04:8e:aa, length 28
