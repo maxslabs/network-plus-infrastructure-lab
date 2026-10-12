@@ -2,12 +2,12 @@
 
 ## Session Observations
 
-The completed session observed:
+During the lab, I observed:
 
 - On `veth-rtr-br`, the same ICMP packet entered the router tagged VLAN 10 and left after routing tagged VLAN 20.
 - On `veth-c-br`, IPv4 frames on PC-C's access link were untagged.
 
-These are supplied session observations, not raw capture transcripts. No historical PCAP or tcpdump text was available to attach. The commands below collect new evidence from a rebuilt lab.
+These are my session notes. The original PCAP files and tcpdump transcripts are not included here. I use the commands below to collect fresh evidence after rebuilding the lab.
 
 ## Capture Points
 

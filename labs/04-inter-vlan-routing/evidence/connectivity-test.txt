@@ -1,7 +1,7 @@
-Source: Max's terminal output in the completed Start Lab 04 session.
+Source: My terminal output after completing the Lab 04 rebuild.
 Command: sudo ip netns exec pc-a ping -c 2 10.10.20.10
 Context: after the corrected setup script completed during the rebuild.
-The conversation's accidental "##" prefix before PING has been omitted below.
+I removed an accidental "##" prefix before PING from the pasted output below.
 
 PING 10.10.20.10 (10.10.20.10) 56(84) bytes of data.
 64 bytes from 10.10.20.10: icmp_seq=1 ttl=63 time=0.303 ms

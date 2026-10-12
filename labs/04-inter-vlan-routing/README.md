@@ -4,7 +4,7 @@
 
 This lab extends Lab 03's VLAN segmentation with router-on-a-stick routing. Four Linux network namespaces connect to a VLAN-aware bridge, while a fifth namespace routes between VLAN 10 and VLAN 20 over one tagged trunk.
 
-The environment was built manually, inspected using `tcpdump`, deliberately broken by disabling IPv4 forwarding, and automated using Bash setup and cleanup scripts.
+I built the environment manually, inspected traffic using `tcpdump`, deliberately broke routing by disabling IPv4 forwarding, and automated the rebuild and cleanup using Bash scripts.
 
 ![Inter-VLAN Routing Topology](diagrams/topology.svg)
 
@@ -50,34 +50,34 @@ The router needs only its two connected routes for this topology. PC-A's neighbo
 
 ## Packet Analysis
 
-Session observations showed the same ICMP packet arriving on the router trunk tagged VLAN 10 and returning tagged VLAN 20 after routing. An access-side capture on `veth-c-br` showed untagged IPv4 frames.
+I observed the same ICMP packet arriving on the router trunk tagged VLAN 10 and returning tagged VLAN 20 after routing. On the access side, I captured untagged IPv4 frames on `veth-c-br`.
 
-The [packet-capture documentation](captures/README.md) explains the capture points, matching fields, and commands for collecting text or PCAP evidence. These observations are recorded as session notes: no raw tcpdump transcript or PCAP was available when this portfolio was prepared.
+The [packet-capture documentation](captures/README.md) explains the capture points, matching fields, and commands for collecting text or PCAP evidence. I have documented these observations in my session notes. The original tcpdump transcripts and PCAP files are not included in this repository.
 
 ## Troubleshooting
 
-Disabling `net.ipv4.ip_forward` inside the router caused inter-VLAN traffic to fail despite connected routes being present. Restoring it to `1` restored routing.
+I disabled `net.ipv4.ip_forward` inside the router and confirmed that inter-VLAN traffic failed despite connected routes being present. I restored it to `1` and verified that routing worked again.
 
-During automation, missing `veth` arguments on the PC-C and PC-D link-creation lines stopped setup. Max corrected the script and rebuilt successfully. The retained scripts already contain those fixes.
+During automation, missing `veth` arguments on the PC-C and PC-D link-creation lines stopped setup. I corrected the script and rebuilt successfully. My setup script includes those fixes.
 
 See [troubleshooting notes](troubleshooting.md) for symptoms, investigation, fixes, and VLAN-filtering checks.
 
 ## Validation and Evidence
 
-After the automated rebuild, Max ran:
+After the automated rebuild, I ran:
 
 ```bash
 sudo ip netns exec pc-a ping -c 2 10.10.20.10
 ```
 
-The recorded result was **2 packets transmitted, 2 received, 0% packet loss**, with reply TTL `63`. This is consistent with a single router hop from an initial TTL of 64.
+I received **2 replies from 2 packets transmitted, with 0% packet loss** and reply TTL `63`. This is consistent with a single router hop from an initial TTL of 64.
 
 - [Recorded connectivity output](evidence/connectivity-test.txt)
 - [Evidence provenance and validation summary](evidence/README.md)
 - [Routing and neighbour notes](evidence/routing-and-neighbours.md)
 - [Packet-capture documentation](captures/README.md)
 
-The session validated a cleanup/setup rebuild followed by successful PC-A to PC-C connectivity. It does not establish an exhaustive test of every endpoint pair. The documentation pass checked script syntax without recreating or tearing down the live lab.
+I validated the cleanup/setup rebuild by testing PC-A to PC-C connectivity. This recorded test covers that path; it does not establish an exhaustive test of every endpoint pair.
 
 ## Automation
 
@@ -98,7 +98,7 @@ sudo ./scripts/cleanup.sh
 
 Setup expects the lab namespace and interface names to be unused. If rebuilding this lab, run cleanup first. The names overlap earlier labs; cleanup deletes the named namespaces and `br0`, so do not run overlapping labs simultaneously.
 
-The user's existing [setup script](scripts/setup.sh) and [cleanup script](scripts/cleanup.sh) are retained unchanged.
+My [setup script](scripts/setup.sh) and [cleanup script](scripts/cleanup.sh) reproduce and remove the completed lab.
 
 ## Diagram Source
 

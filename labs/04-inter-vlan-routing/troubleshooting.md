@@ -2,7 +2,7 @@
 
 ## IPv4 Forwarding Disabled
 
-**Symptom:** Inter-VLAN traffic failed after deliberately setting forwarding to `0` in the router namespace.
+**Symptom:** I deliberately set forwarding to `0` in the router namespace and observed inter-VLAN traffic fail.
 
 **Investigation:** Check the router's connected routes, then inspect its forwarding state:
 
@@ -20,7 +20,7 @@ sudo ip netns exec router sysctl -w net.ipv4.ip_forward=1
 sudo ip netns exec pc-a ping -c 2 10.10.20.10
 ```
 
-The supplied completed-session observation records failure at `0` and recovery at `1`. No raw failure transcript is retained. To repeat the deliberate fault on this lab, set `net.ipv4.ip_forward=0` with the same namespace-scoped command, test, then restore it to `1` before continuing.
+I observed failure at `0` and recovery at `1`. The original failure transcript is not included here. To repeat the deliberate fault on this lab, set `net.ipv4.ip_forward=0` with the same namespace-scoped command, test, then restore it to `1` before continuing.
 
 ## Missing veth Type in Setup
 
@@ -34,18 +34,18 @@ Garbage instead of arguments "name ...". Try "ip link help".
 
 **Root cause:** The interface type argument `veth` was missing.
 
-**Resolution:** Max corrected both lines:
+**Resolution:** I corrected both lines:
 
 ```bash
 ip link add veth-c type veth peer name veth-c-br
 ip link add veth-d type veth peer name veth-d-br
 ```
 
-The partial topology was cleaned before rerunning setup. The final trace reached “Lab 04 setup complete”, and the subsequent PC-A to PC-C ping returned two replies with no loss. The existing scripts retain these corrections.
+I cleaned the partial topology before rerunning setup. The final trace reached “Lab 04 setup complete”, and my subsequent PC-A to PC-C ping returned two replies with no loss. My scripts include these corrections.
 
 ## VLAN Filtering and Membership Checks
 
-The session handoff mentions additional VLAN-filtering and script debugging without retaining the exact earlier error transcripts. The checks below describe the verified final configuration; they do not assert an undocumented historical root cause.
+I also worked through VLAN-filtering and script issues during the session. The original error transcripts for those checks are not included here, so I have documented the verified final configuration below without assigning an unrecorded root cause.
 
 ```bash
 sudo ip -d link show br0

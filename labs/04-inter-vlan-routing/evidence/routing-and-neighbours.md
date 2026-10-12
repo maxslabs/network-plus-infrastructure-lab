@@ -1,6 +1,6 @@
 # Routing and Neighbour Inspection
 
-PC-A's route and neighbour tables and the router's route table were inspected in the completed session. Raw table output was not available for this documentation pass. The route listings below describe the expected state derived from the verified addressing and retained setup script; they are not copied terminal evidence.
+I inspected PC-A's route and neighbour tables and the router's route table during the lab. The original table output is not included here. The listings below show the expected state from my verified addressing and setup script; they are not copied terminal output.
 
 ## PC-A Routes
 
