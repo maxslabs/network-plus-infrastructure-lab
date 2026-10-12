@@ -1,0 +1,24 @@
+digraph NetworkTopology {
+    graph [rankdir=LR, labelloc="t", label="MaxsLabs — Lab 04: Inter-VLAN Routing", fontsize=20, nodesep=0.65, ranksep=1.2];
+    node [shape=box, style="rounded", fontsize=12, margin="0.20,0.15"];
+    edge [fontsize=10, dir=none];
+    subgraph cluster_vlan10 {
+        label="VLAN 10 — 10.10.10.0/24";
+        color="#527ba0";
+        a [label="PC-A (pc-a)\n10.10.10.10/24\nveth-a\nGW: 10.10.10.1"];
+        b [label="PC-B (pc-b)\n10.10.10.20/24\nveth-b\nGW: 10.10.10.1"];
+    }
+    subgraph cluster_vlan20 {
+        label="VLAN 20 — 10.10.20.0/24";
+        color="#568c67";
+        c [label="PC-C (pc-c)\n10.10.20.10/24\nveth-c\nGW: 10.10.20.1"];
+        d [label="PC-D (pc-d)\n10.10.20.20/24\nveth-d\nGW: 10.10.20.1"];
+    }
+    bridge [label="Linux Bridge: br0\nVLAN Filtering Enabled\nAccess ports: PVID / Untagged"];
+    router [label="Linux Router (router)\nParent: veth-rtr\nveth-rtr.10: 10.10.10.1/24\nveth-rtr.20: 10.10.20.1/24\nIPv4 Forwarding Enabled"];
+    a -> bridge [label="veth-a-br\nAccess VLAN 10 (untagged)"];
+    b -> bridge [label="veth-b-br\nAccess VLAN 10 (untagged)"];
+    c -> bridge [label="veth-c-br\nAccess VLAN 20 (untagged)"];
+    d -> bridge [label="veth-d-br\nAccess VLAN 20 (untagged)"];
+    bridge -> router [label="veth-rtr-br ↔ veth-rtr\n802.1Q trunk: tagged VLANs 10 / 20", penwidth=2];
+}

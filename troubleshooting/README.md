@@ -201,6 +201,16 @@ This demonstrated that Linux forwarding troubleshooting can require checking sou
 
 ---
 
+### 006 - Inter-VLAN Forwarding Disabled and Setup Errors
+
+**Lab:** [Inter-VLAN Routing](../labs/04-inter-vlan-routing/)
+
+Disabling IPv4 forwarding inside the router namespace deliberately broke inter-VLAN traffic. Restoring it to `1` restored communication. During automation, missing `veth` type arguments stopped PC-C and PC-D interface creation; correcting the commands and rebuilding produced a successful PC-A to PC-C ping.
+
+See the [Lab 04 troubleshooting notes](../labs/04-inter-vlan-routing/troubleshooting.md) for investigation commands, corrections, VLAN checks, and evidence provenance.
+
+---
+
 ## Troubleshooting Method
 
 The general troubleshooting process used throughout this project is:

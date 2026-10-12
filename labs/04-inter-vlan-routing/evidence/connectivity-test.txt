@@ -1,0 +1,12 @@
+Source: Max's terminal output in the completed Start Lab 04 session.
+Command: sudo ip netns exec pc-a ping -c 2 10.10.20.10
+Context: after the corrected setup script completed during the rebuild.
+The conversation's accidental "##" prefix before PING has been omitted below.
+
+PING 10.10.20.10 (10.10.20.10) 56(84) bytes of data.
+64 bytes from 10.10.20.10: icmp_seq=1 ttl=63 time=0.303 ms
+64 bytes from 10.10.20.10: icmp_seq=2 ttl=63 time=0.204 ms
+
+--- 10.10.20.10 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1020ms
+rtt min/avg/max/mdev = 0.204/0.253/0.303/0.049 ms

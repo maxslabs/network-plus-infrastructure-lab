@@ -30,7 +30,7 @@ Additional systems and networking technologies will be introduced as the lab dev
 | [01 - Linux Multi-Subnet Routing](labs/01-linux-multi-subnet-routing/) | Subnetting, routing, default gateways, IPv4 forwarding, ARP and ICMP packet analysis | Complete |
 | [02 - Routing Loops and TTL](labs/02-routing-loops-and-ttl/) | Static routing loops, IPv4 TTL, ICMP Time Exceeded, reverse-path filtering and packet analysis | Complete |
 | [03 - VLAN Segmentation](labs/03-vlan-segmentation/) | VLANs and Layer 2 network segmentation | Complete |
-| 04 - Inter-VLAN Routing | Routing between segmented VLAN networks | Planned |
+| [04 - Inter-VLAN Routing](labs/04-inter-vlan-routing/) | Router-on-a-stick, 802.1Q trunking, default gateways and packet analysis | Complete |
 | 05 - DHCP Network Services | Dynamic IPv4 configuration and DHCP behaviour | Planned |
 | 06 - NAT and PAT | Address translation and port address translation | Planned |
 | 07 - Firewall and ACL Segmentation | Traffic filtering and network access control | Planned |
@@ -87,7 +87,11 @@ The third lab connects four network namespaces to a VLAN-aware Linux bridge, wit
 
 The lab verifies same-VLAN connectivity, isolation between VLANs without Layer 3 routing, ARP broadcast boundaries and per-VLAN MAC address learning in the bridge forwarding database.
 
-Next is **Lab 04 — Inter-VLAN Routing**, which will introduce routing between the segmented VLAN networks.
+### Lab 04 — Inter-VLAN Routing
+
+The fourth lab adds a Linux router to the VLAN-aware bridge using a tagged trunk and VLAN subinterfaces. It demonstrates routing between VLANs 10 and 20, tagged trunk versus untagged access traffic, next-hop ARP resolution, and a deliberate IPv4 forwarding failure followed by recovery.
+
+Setup and cleanup scripts were validated through a rebuild and successful PC-A to PC-C ping. The [Lab 04 evidence index](labs/04-inter-vlan-routing/evidence/) distinguishes retained terminal output from session observations whose raw captures were unavailable.
 
 ## Approach
 
@@ -123,11 +127,18 @@ network-plus-infrastructure-lab/
 │   │   ├── evidence/
 │   │   ├── scripts/
 │   │   └── README.md
-│   └── 03-vlan-segmentation/
+│   ├── 03-vlan-segmentation/
+│   │   ├── captures/
+│   │   ├── diagrams/
+│   │   ├── evidence/
+│   │   ├── scripts/
+│   │   └── README.md
+│   └── 04-inter-vlan-routing/
 │       ├── captures/
 │       ├── diagrams/
 │       ├── evidence/
 │       ├── scripts/
+│       ├── troubleshooting.md
 │       └── README.md
 ├── troubleshooting/
 │   └── README.md
