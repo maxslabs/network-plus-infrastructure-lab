@@ -1,0 +1,16 @@
+User-supplied terminal output after the successful scripted rebuild, 2026-10-14.
+
+$ sudo ip netns exec pc-a dig +short @10.50.50.1 server01.maxslabs.test
+10.50.50.1
+
+$ sudo ip netns exec pc-a dig +short @10.50.50.1 -x 10.50.50.1
+server01.maxslabs.test.
+
+$ sudo ip netns exec pc-a dig +noall +answer @10.50.50.1 cachetest.maxslabs.test
+cachetest.maxslabs.test. 120 IN A 10.50.50.99
+
+$ sleep 10
+$ sudo ip netns exec pc-a dig +noall +answer @10.50.50.1 cachetest.maxslabs.test
+cachetest.maxslabs.test. 110 IN A 10.50.50.99
+
+Whitespace normalized for readability; values preserved from the supplied output.
