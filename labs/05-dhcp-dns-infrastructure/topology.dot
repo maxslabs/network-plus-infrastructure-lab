@@ -1,0 +1,14 @@
+digraph Lab05 {
+  graph [rankdir=TB, bgcolor="white", label="Lab 05 — DHCP and DNS (10.50.50.0/24)", labelloc=t, fontname="sans-serif"];
+  node [shape=box, style="rounded,filled", fillcolor="#eef4ff", fontname="sans-serif"];
+  edge [fontname="sans-serif", fontsize=10];
+  pc [label="pc-a\nveth-a | 82:1f:2b:04:8e:aa\nDHCP reservation: 10.50.50.110"];
+  bridge [label="br0\nLayer 2 bridge", fillcolor="#e5f6e8"];
+  resolver [label="dhcp-server | 10.50.50.1\nveth-dhcp\nDHCP + caching/forwarding DNS\nserver01 A / PTR (TTL 60)"];
+  auth [label="auth-dns | 10.50.50.2\nveth-auth\nLocal answer source\ncachetest A = 10.50.50.99 (TTL 120)"];
+  pc -> bridge [dir=both, label="veth-a ↔ veth-a-br"];
+  bridge -> resolver [dir=both, label="veth-dhcp-br ↔ veth-dhcp"];
+  bridge -> auth [dir=both, label="veth-auth-br ↔ veth-auth"];
+  pc -> resolver [style=dashed, color="#2958aa", label="DORA / DNS query", constraint=false];
+  resolver -> auth [style=dashed, color="#2958aa", label="conditional forwarding\nmaxslabs.test; cache reply", constraint=false];
+}

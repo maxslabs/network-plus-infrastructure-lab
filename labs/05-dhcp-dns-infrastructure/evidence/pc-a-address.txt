@@ -1,0 +1,6 @@
+8: veth-a@if7: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 82:1f:2b:04:8e:aa brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.50.50.110/24 brd 10.50.50.255 scope global dynamic veth-a
+       valid_lft 3535sec preferred_lft 3535sec
+    inet6 fe80::801f:2bff:fe04:8eaa/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever

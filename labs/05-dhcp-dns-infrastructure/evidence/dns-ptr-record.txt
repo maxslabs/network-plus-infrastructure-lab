@@ -1,0 +1,21 @@
+
+; <<>> DiG 9.20.29-1~deb13u1-Debian <<>> @10.50.50.1 -x 10.50.50.1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45159
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;1.50.50.10.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+1.50.50.10.in-addr.arpa. 60	IN	PTR	server01.maxslabs.test.
+
+;; Query time: 0 msec
+;; SERVER: 10.50.50.1#53(10.50.50.1) (UDP)
+;; WHEN: Wed Oct 14 22:00:06 +04 2026
+;; MSG SIZE  rcvd: 88
+

@@ -1,0 +1,21 @@
+
+; <<>> DiG 9.20.29-1~deb13u1-Debian <<>> @10.50.50.1 cachetest.maxslabs.test
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1017
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;cachetest.maxslabs.test.	IN	A
+
+;; ANSWER SECTION:
+cachetest.maxslabs.test. 107	IN	A	10.50.50.99
+
+;; Query time: 0 msec
+;; SERVER: 10.50.50.1#53(10.50.50.1) (UDP)
+;; WHEN: Wed Oct 14 22:00:25 +04 2026
+;; MSG SIZE  rcvd: 68
+

@@ -31,7 +31,7 @@ Additional systems and networking technologies will be introduced as the lab dev
 | [02 - Routing Loops and TTL](labs/02-routing-loops-and-ttl/) | Static routing loops, IPv4 TTL, ICMP Time Exceeded, reverse-path filtering and packet analysis | Complete |
 | [03 - VLAN Segmentation](labs/03-vlan-segmentation/) | VLANs and Layer 2 network segmentation | Complete |
 | [04 - Inter-VLAN Routing](labs/04-inter-vlan-routing/) | Router-on-a-stick, 802.1Q trunking, default gateways and packet analysis | Complete |
-| 05 - DHCP Network Services | Dynamic IPv4 configuration and DHCP behaviour | Planned |
+| [05 - DHCP and DNS Infrastructure](labs/05-dhcp-dns-infrastructure/) | DHCP leases and reservation, A/PTR records, DNS forwarding and TTL caching | Documented; lifecycle scripts pending end-to-end validation |
 | 06 - NAT and PAT | Address translation and port address translation | Planned |
 | 07 - Firewall and ACL Segmentation | Traffic filtering and network access control | Planned |
 | 08 - IPv6 Networking | IPv6 addressing, neighbour discovery and routing | Planned |
@@ -92,6 +92,12 @@ The lab verifies same-VLAN connectivity, isolation between VLANs without Layer 3
 The fourth lab adds a Linux router to the VLAN-aware bridge using a tagged trunk and VLAN subinterfaces. It demonstrates routing between VLANs 10 and 20, tagged trunk versus untagged access traffic, next-hop ARP resolution, and a deliberate IPv4 forwarding failure followed by recovery.
 
 Setup and cleanup scripts were validated through a rebuild and successful PC-A to PC-C ping. The [Lab 04 evidence index](labs/04-inter-vlan-routing/evidence/) distinguishes retained terminal output from session observations whose raw captures were unavailable.
+
+### Lab 05 — DHCP and DNS Infrastructure
+
+Three network namespaces share a Linux bridge to demonstrate a reserved DHCP lease, forward and reverse DNS records, conditional forwarding and cache TTL expiry. Saved evidence records the client at 10.50.50.110 and a DNS TTL decrease from 120 to 107 seconds.
+
+[Lab 05 documentation](labs/05-dhcp-dns-infrastructure/) includes executable lifecycle scripts, captured configurations, troubleshooting exercises and a topology diagram. Shell and dnsmasq syntax checks pass; lifecycle scripts still need a full privileged run.
 
 ## Approach
 

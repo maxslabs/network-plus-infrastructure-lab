@@ -1,0 +1,2 @@
+default via 10.50.50.1 dev veth-a 
+10.50.50.0/24 dev veth-a proto kernel scope link src 10.50.50.110 
