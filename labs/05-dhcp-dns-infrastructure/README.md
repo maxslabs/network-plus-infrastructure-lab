@@ -66,4 +66,4 @@ See [troubleshooting.md](troubleshooting.md) for controlled link, DHCP, forwardi
 - `evidence/`: original lease, addressing, route and DNS observations.
 - `topology.dot`, `topology.svg`: diagram source and rendered view.
 
-Shell syntax and both dnsmasq configuration syntax checks passed during packaging. A privileged end-to-end run remains a separate verification step on the lab host.
+Shell syntax and both dnsmasq configuration syntax checks passed. The corrected cleanup/setup scripts were run successfully on the lab host: PC-A acquired the reserved 10.50.50.110/24 address and default route via 10.50.50.1. [Rebuild evidence](evidence/script-rebuild.txt) preserves the user-supplied terminal output. The existing DNS evidence comes from the original live lab; DNS queries after this scripted rebuild still need verification.

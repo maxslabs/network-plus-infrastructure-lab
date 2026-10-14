@@ -1,0 +1,13 @@
+User-supplied terminal output from the validated cleanup/setup run on 2026-10-14.
+
+$ sudo ./labs/05-dhcp-dns-infrastructure/scripts/cleanup.sh
+$ sudo ./labs/05-dhcp-dns-infrastructure/scripts/setup.sh
+Lab 05 removed. Saved evidence is untouched; runtime logs/leases remain in /run/networkplus-lab05.
+dnsmasq: syntax check OK.
+dnsmasq: syntax check OK.
+Lab 05 ready. Runtime logs, PIDs and leases: /run/networkplus-lab05
+33: veth-a@if32: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000 link-netnsid 0
+    inet 10.50.50.110/24 scope global veth-a
+       valid_lft forever preferred_lft forever
+default via 10.50.50.1 dev veth-a 
+10.50.50.0/24 dev veth-a proto kernel scope link src 10.50.50.110 
