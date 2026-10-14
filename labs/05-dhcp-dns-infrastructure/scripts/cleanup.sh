@@ -7,9 +7,18 @@ for tool in ip flock; do command -v "$tool" >/dev/null; done
 exec 9>/run/lock/networkplus-lab05.lock
 flock -n 9 || { echo 'Another Lab 05 operation is running.' >&2; exit 1; }
 has_ns() { ip netns list | awk '{print $1}' | grep -Fxq "$1"; }
-if has_ns pc-a && [[ -s $RUN/dhclient.pid ]] && command -v dhclient >/dev/null; then
-  timeout 5 ip netns exec pc-a dhclient -4 -r -pf "$RUN/dhclient.pid" \
-    -lf "$RUN/client.leases" -sf "$RUN/dhclient-hook" veth-a || true
+# Release only if this PID still belongs to the lab namespace. Never signal
+# an unrelated process through a stale dhclient PID file.
+if has_ns pc-a && [[ -s /run/dhclient-lab05.pid && -f $RUN/dhclient-hook ]]; then
+  client_pid=$(cat /run/dhclient-lab05.pid)
+  if [[ $client_pid =~ ^[0-9]+$ ]] && ip netns pids pc-a | grep -Fxq "$client_pid"; then
+    timeout 5 ip netns exec pc-a unshare --mount --propagation private \
+      bash -eu -c '
+        mount --bind "$1" /usr/sbin/dhclient-script
+        exec /usr/sbin/dhclient -4 -r -pf /run/dhclient-lab05.pid \
+          -lf /run/dhclient-lab05.leases -sf /usr/sbin/dhclient-script veth-a
+      ' lab05-release "$RUN/dhclient-hook" 9>&- || true
+  fi
 fi
 # Enumerate namespace members rather than trusting possibly stale/reused PID files.
 # This also stops DHCP clients/dnsmasq from the original manually constructed lab.
@@ -28,5 +37,5 @@ done
 for dev in veth-a-br veth-dhcp-br veth-auth-br veth-a veth-dhcp veth-auth br0; do
   if ip link show "$dev" >/dev/null 2>&1; then ip link delete "$dev"; fi
 done
-rm -f "$RUN/managed" "$RUN/resolver.pid" "$RUN/authoritative.pid" "$RUN/dhclient.pid"
+rm -f "$RUN/managed" "$RUN/resolver.pid" "$RUN/authoritative.pid" "$RUN/dhclient.pid" /run/dhclient-lab05.pid
 echo "Lab 05 removed. Saved evidence is untouched; runtime logs/leases remain in $RUN."

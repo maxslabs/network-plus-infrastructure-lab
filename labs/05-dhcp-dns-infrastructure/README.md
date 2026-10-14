@@ -29,7 +29,7 @@ sudo ./scripts/cleanup.sh
 
 Setup refuses existing unmanaged resources. If continuing the manually built lab, preserve captures first and explicitly run cleanup before setup. Repeating setup with a managed runtime does not rebuild it; use cleanup then setup for a fresh configuration. Cleanup can be repeated and removes all processes in the three named lab namespaces, including processes launched manually. Do not put unrelated processes there.
 
-Runtime PIDs, logs and leases live in `/run/networkplus-lab05`. Cleanup retains logs/leases for inspection; `/run` is temporary across reboots. Setup uses a namespace-local DHCP hook, so it does not modify host DNS settings. Queries use explicit `dig @10.50.50.1`. The gateway is delivered by DHCP as 10.50.50.1, but this lab does not configure Internet routing/NAT. A default route alone does not prove external connectivity.
+Server PIDs, logs and leases live in `/run/networkplus-lab05`. The DHCP client uses `/run/dhclient-lab05.pid` and `/run/dhclient-lab05.leases`, matching the installed AppArmor profile. Its custom hook is mounted over the standard hook path inside a private mount namespace; the host copy stays unchanged. Cleanup retains logs/leases for inspection; `/run` is temporary across reboots. Setup uses a namespace-local DHCP hook, so it does not modify host DNS settings. Queries use explicit `dig @10.50.50.1`. The gateway is delivered by DHCP as 10.50.50.1, but this lab does not configure Internet routing/NAT. A default route alone does not prove external connectivity.
 
 ## DHCP: DORA, leases and reservation
 

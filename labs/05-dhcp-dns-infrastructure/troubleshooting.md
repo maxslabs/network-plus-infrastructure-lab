@@ -55,3 +55,9 @@ sudo tail -n 40 /run/networkplus-lab05/authoritative.log
 ```
 
 DNS listens on port 53 (UDP/TCP); DHCP server uses UDP 67. Cleanup enumerates processes inside each lab namespace, avoiding stale PID-file kills against unrelated host processes. Runtime logs and leases survive cleanup but not reboot. Cleanup also deletes br0 and named veth peers, so these names must belong exclusively to this lab.
+
+## DHCP ACK received, but client address missing
+
+The first scripted run completed Discover, Offer, Request and ACK for 10.50.50.110, but dhclient reported `Permission denied` for its custom hook and lease file under `/run/networkplus-lab05`. The address could not be applied, so setup rolled back.
+
+The installed AppArmor profile permits `/run/dhclient*.pid`, `/run/dhclient*.lease*`, and execution of the standard dhclient script. Setup now uses those permitted client filenames and mounts the lab hook over `/usr/sbin/dhclient-script` in a private mount namespace. The host script and AppArmor policy remain unchanged. The client retains this mount namespace for renewals; cleanup uses the same arrangement for release. Setup failures now print the failing command and the client log before rollback.
