@@ -84,6 +84,8 @@ chmod 755 "$RUN/dhclient-hook"
 timeout 45 ip netns exec pc-a unshare --mount --propagation private \
   bash -eu -c '
     mount --bind "$1" /usr/sbin/dhclient-script
+    # /run is noexec on this host; enable only this private bind mount.
+    mount -o remount,bind,exec /usr/sbin/dhclient-script
     exec /usr/sbin/dhclient -4 -1 -v \
       -pf /run/dhclient-lab05.pid -lf /run/dhclient-lab05.leases \
       -sf /usr/sbin/dhclient-script veth-a

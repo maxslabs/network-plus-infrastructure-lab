@@ -61,3 +61,9 @@ DNS listens on port 53 (UDP/TCP); DHCP server uses UDP 67. Cleanup enumerates pr
 The first scripted run completed Discover, Offer, Request and ACK for 10.50.50.110, but dhclient reported `Permission denied` for its custom hook and lease file under `/run/networkplus-lab05`. The address could not be applied, so setup rolled back.
 
 The installed AppArmor profile permits `/run/dhclient*.pid`, `/run/dhclient*.lease*`, and execution of the standard dhclient script. Setup now uses those permitted client filenames and mounts the lab hook over `/usr/sbin/dhclient-script` in a private mount namespace. The host script and AppArmor policy remain unchanged. The client retains this mount namespace for renewals; cleanup uses the same arrangement for release. Setup failures now print the failing command and the client log before rollback.
+
+## Hook execution still denied after the bind mount
+
+The next run showed the hook at its permitted standard path, but execution still failed. `findmnt` identified `/run` as `noexec`: a bind mount inherits that flag from its source. Setup and release now remount only the hook's private bind mount with `exec`. The host `/run` mount retains `noexec`.
+
+Rollback also exposed a cleanup race: deleting a namespace can asynchronously remove its veth peer between the existence check and deletion. Cleanup now accepts a failed deletion if the link has already disappeared, while still reporting links that remain.

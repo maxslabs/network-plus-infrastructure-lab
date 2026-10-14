@@ -15,6 +15,8 @@ if has_ns pc-a && [[ -s /run/dhclient-lab05.pid && -f $RUN/dhclient-hook ]]; the
     timeout 5 ip netns exec pc-a unshare --mount --propagation private \
       bash -eu -c '
         mount --bind "$1" /usr/sbin/dhclient-script
+    # /run is noexec on this host; enable only this private bind mount.
+    mount -o remount,bind,exec /usr/sbin/dhclient-script
         exec /usr/sbin/dhclient -4 -r -pf /run/dhclient-lab05.pid \
           -lf /run/dhclient-lab05.leases -sf /usr/sbin/dhclient-script veth-a
       ' lab05-release "$RUN/dhclient-hook" 9>&- || true
@@ -35,7 +37,15 @@ for ns in pc-a dhcp-server auth-dns; do
   ip netns delete "$ns"
 done
 for dev in veth-a-br veth-dhcp-br veth-auth-br veth-a veth-dhcp veth-auth br0; do
-  if ip link show "$dev" >/dev/null 2>&1; then ip link delete "$dev"; fi
+  if ip link show "$dev" >/dev/null 2>&1; then
+    # Namespace destruction may asynchronously remove the peer after the check.
+    if ! ip link delete "$dev" 2>/dev/null; then
+      if ip link show "$dev" >/dev/null 2>&1; then
+        echo "Could not remove lab link: $dev" >&2
+        exit 1
+      fi
+    fi
+  fi
 done
 rm -f "$RUN/managed" "$RUN/resolver.pid" "$RUN/authoritative.pid" "$RUN/dhclient.pid" /run/dhclient-lab05.pid
 echo "Lab 05 removed. Saved evidence is untouched; runtime logs/leases remain in $RUN."
